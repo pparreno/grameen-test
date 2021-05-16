@@ -1,13 +1,13 @@
-package com.example.grameentest.ui.login
+package com.pjpsystems.grameentest.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import com.example.grameentest.data.LoginRepository
-import com.example.grameentest.data.Result
+import com.pjpsystems.grameentest.data.LoginRepository
+import com.pjpsystems.grameentest.data.Result
 
-import com.example.grameentest.R
+import com.pjpsystems.grameentest.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

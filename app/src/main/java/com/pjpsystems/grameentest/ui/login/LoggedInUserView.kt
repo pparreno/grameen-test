@@ -1,4 +1,4 @@
-package com.example.grameentest.ui.login
+package com.pjpsystems.grameentest.ui.login
 
 /**
  * User details post authentication that is exposed to the UI

@@ -1,4 +1,4 @@
-package com.example.grameentest.ui.login
+package com.pjpsystems.grameentest.ui.login
 
 import android.app.Activity
 import androidx.lifecycle.Observer
@@ -15,7 +15,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 
-import com.example.grameentest.R
+import com.pjpsystems.grameentest.R
 
 class LoginActivity : AppCompatActivity() {
 

@@ -1,6 +1,6 @@
-package com.example.grameentest.data
+package com.pjpsystems.grameentest.data
 
-import com.example.grameentest.data.model.LoggedInUser
+import com.pjpsystems.grameentest.data.model.LoggedInUser
 
 /**
  * Class that requests authentication and user information from the remote data source and

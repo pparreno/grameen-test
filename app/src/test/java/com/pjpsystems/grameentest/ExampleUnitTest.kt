@@ -1,4 +1,4 @@
-package com.example.grameentest
+package com.pjpsystems.grameentest
 
 import org.junit.Test
 
