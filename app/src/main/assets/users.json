@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "name": "John",
+      "employee_id": "101",
+      "country_iso": "AUS"
+    },
+    {
+      "name": "Chris",
+      "employee_id": "102",
+      "country_iso": "AUS"
+    },
+    {
+      "name": "Jenny",
+      "employee_id": "103",
+      "country_iso": "AUS"
+    },
+    {
+      "name": "Larissa",
+      "employee_id": "201",
+      "country_iso": "IDN"
+    },
+    {
+      "name": "Marius",
+      "employee_id": "202",
+      "country_iso": "IDN"
+    },
+      {
+      "name": "Rina",
+      "employee_id": "203",
+      "country_iso": "IDN"
+    },
+      {
+      "name": "Julian",
+      "employee_id": "301",
+      "country_iso": "COL"
+    }
+  ]
+}
