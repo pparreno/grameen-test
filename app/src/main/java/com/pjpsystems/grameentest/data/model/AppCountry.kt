@@ -8,4 +8,3 @@ class AppCountry {
     @SerializedName("country_name")
     lateinit var name: String
 }
-g
