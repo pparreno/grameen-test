@@ -36,8 +36,8 @@ class CountryRepository private constructor(context: Context) {
 
 
 
-    suspend fun insertCountries(listCountries: List<Country>){
-        db?.countryDao()!!.createAll(listCountries)
+    suspend fun insertCountries(listCountries: List<Country>) {
+        return db?.countryDao()!!.createAll(listCountries)
     }
 
 }

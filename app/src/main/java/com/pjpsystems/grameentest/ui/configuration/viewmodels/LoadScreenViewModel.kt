@@ -17,11 +17,12 @@ import timber.log.Timber
 
 class LoadScreenViewModel(application: Application) : AndroidViewModel(application) {
 
-    lateinit var usersListLiveData: MutableLiveData<List<AppUser>>
-    lateinit var countriesListLiveData: MutableLiveData<List<AppCountry>>
     val gson = Gson()
     private val countryRepository: CountryRepository = CountryRepository.getInstance(application)!!
     private val userRepository: UserRepository = UserRepository.getInstance(application)!!
+
+    var flagStoredDefaultCountries: MutableLiveData<Boolean> = MutableLiveData()
+    var flagStoredDefaultUsers: MutableLiveData<Boolean> = MutableLiveData()
 
     fun retrieveDefaultValues() {
         retrieveDefaultCountries()
@@ -33,10 +34,18 @@ class LoadScreenViewModel(application: Application) : AndroidViewModel(applicati
         Timber.i("data: %s", jsonFileString)
         val listCountryType = object : TypeToken<List<AppCountry>>() {}.type
         val countries: List<AppCountry> = gson.fromJson(jsonFileString, listCountryType)
-        countriesListLiveData = MutableLiveData()
-        countriesListLiveData.postValue(countries)
         viewModelScope.launch {
-            countryRepository.insertCountries(ModelUtils.convertRoomCountryListFromAppCountryList(countries))
+
+            try {
+                countryRepository.insertCountries(
+                    ModelUtils.convertRoomCountryListFromAppCountryList(
+                        countries
+                    )
+                )
+                flagStoredDefaultCountries.postValue(true)
+            } catch (e: Exception) {
+                flagStoredDefaultCountries.postValue(false)
+            }
         }
 
     }
@@ -46,10 +55,15 @@ class LoadScreenViewModel(application: Application) : AndroidViewModel(applicati
         Timber.i("data: %s", jsonFileString)
         val listUserType = object : TypeToken<List<AppUser>>() {}.type
         val users: List<AppUser> = gson.fromJson(jsonFileString, listUserType)
-        usersListLiveData = MutableLiveData()
-        usersListLiveData.postValue(users)
         viewModelScope.launch {
-            userRepository.insertUsers(ModelUtils.convertRoomUserListFromAppUserList(users))
+
+            try {
+                userRepository.insertUsers(ModelUtils.convertRoomUserListFromAppUserList(users))
+                flagStoredDefaultUsers.postValue(true)
+            } catch (e: Exception) {
+                flagStoredDefaultUsers.postValue(false)
+            }
+
         }
     }
 }
