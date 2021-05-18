@@ -3,6 +3,7 @@ package com.pjpsystems.grameentest.ui.dashboard.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,7 @@ import com.pjpsystems.grameentest.R
 import com.pjpsystems.grameentest.data.room.User
 
 class UsersAdapter(var dataSet: List<User>,
-                   var onClickListener: View.OnClickListener): RecyclerView.Adapter<UsersAdapter.UserItemViewHolder>() {
+                   var onClickListener: View.OnClickListener) : RecyclerView.Adapter<UsersAdapter.UserItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserItemViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -18,12 +19,24 @@ class UsersAdapter(var dataSet: List<User>,
         val viewHolder = UserItemViewHolder(view)
         viewHolder.nameTextView = view.findViewById(R.id.text_user_name)
         viewHolder.cardView = view.findViewById(R.id.card_view)
+        viewHolder.flagImageView = view.findViewById(R.id.flag_imageView)
         return viewHolder
     }
 
     override fun onBindViewHolder(holder: UserItemViewHolder, position: Int) {
         val data = dataSet[position]
         holder.nameTextView.text = data.name
+        when {
+            data.country_iso.compareTo("AUS") == 0 -> {
+                holder.flagImageView.setImageResource(R.drawable.aus_flag)
+            }
+            data.country_iso.compareTo("IDN") == 0 -> {
+                holder.flagImageView.setImageResource(R.drawable.idn_flag)
+            }
+            data.country_iso.compareTo("COL") == 0 -> {
+                holder.flagImageView.setImageResource(R.drawable.col_flag)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -31,9 +44,10 @@ class UsersAdapter(var dataSet: List<User>,
     }
 
 
-    class UserItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class UserItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         lateinit var nameTextView: TextView
-        lateinit var cardView : CardView
+        lateinit var cardView: CardView
+        lateinit var flagImageView: ImageView
     }
 
 }
