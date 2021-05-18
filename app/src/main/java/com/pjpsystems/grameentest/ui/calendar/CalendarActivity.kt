@@ -2,14 +2,19 @@ package com.pjpsystems.grameentest.ui.calendar
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import org.apache.commons.lang3.time.DateUtils
 import com.pjpsystems.grameentest.R
 import com.pjpsystems.grameentest.databinding.ActivityCalendarBinding
+import com.pjpsystems.grameentest.ui.calendar.viewmodels.CalendarViewModel
+import timber.log.Timber
 import java.util.*
 
 class CalendarActivity : AppCompatActivity() {
 
     lateinit var viewBinding: ActivityCalendarBinding
+
+    lateinit var viewModel: CalendarViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +33,11 @@ class CalendarActivity : AppCompatActivity() {
             // set this date as calendar view selected date
             view.date = calendar.timeInMillis
         }
+
+        viewModel = ViewModelProvider(this).get(CalendarViewModel::class.java)
+        viewModel.getHolidays("2021", "AU").observe(this, {
+            Timber.d(it.toString())
+        })
     }
 
     private fun configureCalendarView() {

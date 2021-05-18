@@ -4,10 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.room.Room
 import com.pjpsystems.grameentest.architecture.room.database.AppDatabase
-import com.pjpsystems.grameentest.data.room.Country
 import com.pjpsystems.grameentest.data.room.User
 
-class UserRepository private constructor(context: Context){
+class UserRepository private constructor(context: Context) {
 
     private var db: AppDatabase? = null
 
@@ -17,7 +16,7 @@ class UserRepository private constructor(context: Context){
         @JvmStatic
         private var instance: UserRepository? = null
 
-        fun getInstance(context: Context): UserRepository? {
+        fun getInstance(context: Context): UserRepository {
             if (instance == null) {
                 synchronized(UserRepository::class.java) {
                     if (instance == null) {
@@ -25,7 +24,7 @@ class UserRepository private constructor(context: Context){
                     }
                 }
             }
-            return instance
+            return instance!!
         }
     }
 

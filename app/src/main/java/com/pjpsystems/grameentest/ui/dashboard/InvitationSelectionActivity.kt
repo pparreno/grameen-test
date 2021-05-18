@@ -1,12 +1,13 @@
 package com.pjpsystems.grameentest.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pjpsystems.grameentest.databinding.ActivityInvitationSelectionBinding
-import com.pjpsystems.grameentest.ui.configuration.viewmodels.LoadScreenViewModel
+import com.pjpsystems.grameentest.ui.calendar.CalendarActivity
 import com.pjpsystems.grameentest.ui.dashboard.adapter.UsersAdapter
 import com.pjpsystems.grameentest.ui.dashboard.viewmodels.InvitationSelectionViewModel
 
@@ -16,7 +17,7 @@ class InvitationSelectionActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var viewModel: InvitationSelectionViewModel
 
-    private lateinit var adapter : UsersAdapter
+    private lateinit var adapter: UsersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +40,11 @@ class InvitationSelectionActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
+        navigateToCalendarActivity()
+    }
 
+    private fun navigateToCalendarActivity() {
+        val intent = Intent(this, CalendarActivity::class.java)
+        startActivity(intent)
     }
 }

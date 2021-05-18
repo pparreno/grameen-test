@@ -20,6 +20,7 @@ class UsersAdapter(var dataSet: List<User>,
         viewHolder.nameTextView = view.findViewById(R.id.text_user_name)
         viewHolder.cardView = view.findViewById(R.id.card_view)
         viewHolder.flagImageView = view.findViewById(R.id.flag_imageView)
+        viewHolder.cardView.setOnClickListener(onClickListener)
         return viewHolder
     }
 

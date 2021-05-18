@@ -1,4 +1,4 @@
-package com.pjpsystems.grameentest.data.model
+package com.pjpsystems.grameentest.data.app_model
 
 import com.google.gson.annotations.SerializedName
 

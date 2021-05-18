@@ -15,7 +15,7 @@ class CountryRepository private constructor(context: Context) {
         @JvmStatic
         private var instance: CountryRepository? = null
 
-        fun getInstance(context: Context): CountryRepository? {
+        fun getInstance(context: Context): CountryRepository {
             if (instance == null) {
                 synchronized(CountryRepository::class.java) {
                     if (instance == null) {
@@ -23,7 +23,7 @@ class CountryRepository private constructor(context: Context) {
                     }
                 }
             }
-            return instance
+            return instance!!
         }
     }
 

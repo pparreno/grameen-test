@@ -1,14 +1,14 @@
 [
   {
     "country_name": "Australia",
-    "country_iso": "AUS"
+    "country_iso": "AU"
   },
   {
     "country_name": "Indonesia",
-    "country_iso": "IDN"
+    "country_iso": "ID"
   },
   {
     "country_name": "Colombia",
-    "country_iso": "COL"
+    "country_iso": "CO"
   }
 ]

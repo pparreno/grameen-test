@@ -8,8 +8,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.pjpsystems.grameentest.architecture.repository.CountryRepository
 import com.pjpsystems.grameentest.architecture.repository.UserRepository
-import com.pjpsystems.grameentest.data.model.AppCountry
-import com.pjpsystems.grameentest.data.model.AppUser
+import com.pjpsystems.grameentest.data.app_model.AppCountry
+import com.pjpsystems.grameentest.data.app_model.AppUser
 import com.pjpsystems.grameentest.utils.ModelUtils
 import com.pjpsystems.grameentest.utils.ParseUtils
 import kotlinx.coroutines.launch

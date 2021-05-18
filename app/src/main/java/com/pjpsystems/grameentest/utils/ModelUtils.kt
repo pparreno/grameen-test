@@ -1,7 +1,7 @@
 package com.pjpsystems.grameentest.utils
 
-import com.pjpsystems.grameentest.data.model.AppCountry
-import com.pjpsystems.grameentest.data.model.AppUser
+import com.pjpsystems.grameentest.data.app_model.AppCountry
+import com.pjpsystems.grameentest.data.app_model.AppUser
 import com.pjpsystems.grameentest.data.room.Country
 import com.pjpsystems.grameentest.data.room.User
 
