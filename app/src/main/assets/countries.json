@@ -1,16 +1,14 @@
-{
-  "countries": [
-    {
-      "country_name": "Australia",
-      "country_iso": "AUS"
-    },
-    {
-      "country_name": "Indonesia",
-      "country_iso": "IDN"
-    },
-    {
-      "country_name": "Colombia",
-      "country_iso": "COL"
-    }
-  ]
-}
+[
+  {
+    "country_name": "Australia",
+    "country_iso": "AUS"
+  },
+  {
+    "country_name": "Indonesia",
+    "country_iso": "IDN"
+  },
+  {
+    "country_name": "Colombia",
+    "country_iso": "COL"
+  }
+]

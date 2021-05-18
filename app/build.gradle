@@ -65,7 +65,7 @@ dependencies {
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:$room_version"
 
-    // optional - Kotlin Extensions and Coroutines support
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
     implementation 'org.apache.commons:commons-lang3:3.6'
 

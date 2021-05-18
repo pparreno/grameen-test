@@ -1,6 +1,7 @@
 package com.pjpsystems.grameentest.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -16,6 +17,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 
 import com.pjpsystems.grameentest.R
+import com.pjpsystems.grameentest.ui.configuration.LoadScreenActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -52,16 +54,19 @@ class LoginActivity : AppCompatActivity() {
             val loginResult = it ?: return@Observer
 
             loading.visibility = View.GONE
+            setResult(Activity.RESULT_OK)
             if (loginResult.error != null) {
                 showLoginFailed(loginResult.error)
+                //Complete and destroy login activity once successful
+                finish()
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
+                showConfigurationActivity()
             }
-            setResult(Activity.RESULT_OK)
 
-            //Complete and destroy login activity once successful
-            finish()
+
+
         })
 
         username.afterTextChanged {
@@ -95,6 +100,11 @@ class LoginActivity : AppCompatActivity() {
                 loginViewModel.login(username.text.toString(), password.text.toString())
             }
         }
+    }
+
+    private fun showConfigurationActivity() {
+        val intent = Intent(this, LoadScreenActivity::class.java)
+        startActivity(intent)
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
