@@ -13,6 +13,8 @@ import com.pjpsystems.grameentest.data.room.User
 class UsersAdapter(var dataSet: List<User>,
                    var onClickListener: View.OnClickListener) : RecyclerView.Adapter<UsersAdapter.UserItemViewHolder>() {
 
+    var selectedIndex: Number? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserItemViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_user_selection, parent, false)
@@ -20,7 +22,7 @@ class UsersAdapter(var dataSet: List<User>,
         viewHolder.nameTextView = view.findViewById(R.id.text_user_name)
         viewHolder.cardView = view.findViewById(R.id.card_view)
         viewHolder.flagImageView = view.findViewById(R.id.flag_imageView)
-        viewHolder.cardView.setOnClickListener(onClickListener)
+        viewHolder.itemView.setOnClickListener(onClickListener)
         return viewHolder
     }
 
@@ -28,13 +30,13 @@ class UsersAdapter(var dataSet: List<User>,
         val data = dataSet[position]
         holder.nameTextView.text = data.name
         when {
-            data.country_iso.compareTo("AUS") == 0 -> {
+            data.country_iso.compareTo("AU") == 0 -> {
                 holder.flagImageView.setImageResource(R.drawable.aus_flag)
             }
-            data.country_iso.compareTo("IDN") == 0 -> {
+            data.country_iso.compareTo("ID") == 0 -> {
                 holder.flagImageView.setImageResource(R.drawable.idn_flag)
             }
-            data.country_iso.compareTo("COL") == 0 -> {
+            data.country_iso.compareTo("CO") == 0 -> {
                 holder.flagImageView.setImageResource(R.drawable.col_flag)
             }
         }
@@ -42,6 +44,10 @@ class UsersAdapter(var dataSet: List<User>,
 
     override fun getItemCount(): Int {
         return dataSet.size
+    }
+
+    fun getItem(selectedIndex: Number?): User {
+        return dataSet[selectedIndex as Int]
     }
 
 

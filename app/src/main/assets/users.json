@@ -2,36 +2,36 @@
   {
     "name": "John",
     "employee_id": "101",
-    "country_iso": "AUS"
+    "country_iso": "AU"
   },
   {
     "name": "Chris",
     "employee_id": "102",
-    "country_iso": "AUS"
+    "country_iso": "AU"
   },
   {
     "name": "Jenny",
     "employee_id": "103",
-    "country_iso": "AUS"
+    "country_iso": "AU"
   },
   {
     "name": "Larissa",
     "employee_id": "201",
-    "country_iso": "IDN"
+    "country_iso": "ID"
   },
   {
     "name": "Marius",
     "employee_id": "202",
-    "country_iso": "IDN"
+    "country_iso": "ID"
   },
   {
     "name": "Rina",
     "employee_id": "203",
-    "country_iso": "IDN"
+    "country_iso": "ID"
   },
   {
     "name": "Julian",
     "employee_id": "301",
-    "country_iso": "COL"
+    "country_iso": "CO"
   }
 ]

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.time.DateUtils
 import com.pjpsystems.grameentest.R
 import com.pjpsystems.grameentest.databinding.ActivityCalendarBinding
 import com.pjpsystems.grameentest.ui.calendar.viewmodels.CalendarViewModel
+import com.pjpsystems.grameentest.ui.dashboard.InvitationSelectionActivity
 import timber.log.Timber
 import java.util.*
 
@@ -34,10 +35,14 @@ class CalendarActivity : AppCompatActivity() {
             view.date = calendar.timeInMillis
         }
 
+        val country_code = intent.extras?.getString(InvitationSelectionActivity.KEY_COUNTRY_EXTRA)
+
         viewModel = ViewModelProvider(this).get(CalendarViewModel::class.java)
-        viewModel.getHolidays("2021", "AU").observe(this, {
-            Timber.d(it.toString())
-        })
+        country_code?.let {
+            viewModel.getHolidays("2021", it).observe(this, { holidays ->
+                Timber.d(holidays.toString())
+            })
+        }
     }
 
     private fun configureCalendarView() {
