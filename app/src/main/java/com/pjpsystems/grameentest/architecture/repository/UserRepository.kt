@@ -39,4 +39,8 @@ class UserRepository private constructor(context: Context){
     suspend fun insertUsers(listUsers: List<User>) {
         return db?.userDao()!!.createAll(listUsers)
     }
+
+    suspend fun retrieveUsers(): List<User> {
+        return db?.userDao()!!.getAll()
+    }
 }
