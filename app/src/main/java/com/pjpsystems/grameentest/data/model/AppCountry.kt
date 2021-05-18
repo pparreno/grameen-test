@@ -1,4 +1,11 @@
 package com.pjpsystems.grameentest.data.model
 
-data class AppCountry(val iso: String,
-                      val name: String)
+import com.google.gson.annotations.SerializedName
+
+class AppCountry {
+    @SerializedName("country_iso")
+    lateinit var iso: String
+    @SerializedName("country_name")
+    lateinit var name: String
+}
+g
