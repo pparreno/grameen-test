@@ -1,19 +1,20 @@
 package com.pjpsystems.grameentest.architecture.room.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.pjpsystems.grameentest.data.room.Country
 
 @Dao
 interface CountryDao {
     @Insert
-    fun insertAll(vararg countries: Country)
+    suspend fun insertAll(vararg countries: Country)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @JvmSuppressWildcards
+    suspend fun createAll(objects: List<Country>)
 
     @Delete
-    fun delete(country: Country)
+    suspend fun delete(country: Country)
 
     @Query("SELECT * FROM country")
-    fun getAll(): List<Country>
+    suspend fun getAll(): List<Country>
 }

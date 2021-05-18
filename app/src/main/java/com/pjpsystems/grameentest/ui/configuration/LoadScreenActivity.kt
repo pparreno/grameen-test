@@ -3,6 +3,7 @@ package com.pjpsystems.grameentest.ui.configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.pjpsystems.grameentest.databinding.ActivityLoadScreenBinding
 import com.pjpsystems.grameentest.ui.configuration.viewmodels.LoadScreenViewModel
 
