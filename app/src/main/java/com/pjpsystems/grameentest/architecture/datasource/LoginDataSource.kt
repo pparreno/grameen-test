@@ -1,6 +1,7 @@
-package com.pjpsystems.grameentest.data
+package com.pjpsystems.grameentest.architecture.datasource
 
 import com.pjpsystems.grameentest.data.app_model.LoggedInUser
+import com.pjpsystems.grameentest.data.app_model.Result
 import java.io.IOException
 
 /**

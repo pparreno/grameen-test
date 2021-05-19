@@ -1,4 +1,4 @@
-package com.pjpsystems.grameentest.data
+package com.pjpsystems.grameentest.data.app_model
 
 /**
  * A generic class that holds a value with its loading status.

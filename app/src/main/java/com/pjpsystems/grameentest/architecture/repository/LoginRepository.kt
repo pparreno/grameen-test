@@ -1,5 +1,7 @@
-package com.pjpsystems.grameentest.data
+package com.pjpsystems.grameentest.architecture.repository
 
+import com.pjpsystems.grameentest.architecture.datasource.LoginDataSource
+import com.pjpsystems.grameentest.data.app_model.Result
 import com.pjpsystems.grameentest.data.app_model.LoggedInUser
 
 /**

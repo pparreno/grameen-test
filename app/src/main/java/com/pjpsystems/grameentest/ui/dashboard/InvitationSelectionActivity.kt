@@ -11,6 +11,8 @@ import com.pjpsystems.grameentest.ui.calendar.CalendarActivity
 import com.pjpsystems.grameentest.ui.dashboard.adapter.UsersAdapter
 import com.pjpsystems.grameentest.ui.dashboard.viewmodels.InvitationSelectionViewModel
 import timber.log.Timber
+import java.util.*
+
 
 class InvitationSelectionActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -51,6 +53,7 @@ class InvitationSelectionActivity : AppCompatActivity(), View.OnClickListener {
             adapter.notifyItemChanged(position)
             Timber.d("Selected Index: %d", position)
         }
+
         navigateToCalendarActivity(adapter.getItem(adapter.selectedIndex).country_iso)
 
     }

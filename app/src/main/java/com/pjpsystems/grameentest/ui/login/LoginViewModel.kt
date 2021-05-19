@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import com.pjpsystems.grameentest.data.LoginRepository
-import com.pjpsystems.grameentest.data.Result
+import com.pjpsystems.grameentest.architecture.repository.LoginRepository
+import com.pjpsystems.grameentest.data.app_model.Result
 
 import com.pjpsystems.grameentest.R
 

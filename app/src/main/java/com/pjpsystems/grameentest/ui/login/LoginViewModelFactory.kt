@@ -2,8 +2,8 @@ package com.pjpsystems.grameentest.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.pjpsystems.grameentest.data.LoginDataSource
-import com.pjpsystems.grameentest.data.LoginRepository
+import com.pjpsystems.grameentest.architecture.datasource.LoginDataSource
+import com.pjpsystems.grameentest.architecture.repository.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
