@@ -36,7 +36,7 @@ class AppointmentRepository private constructor(context: Context) {
     }
 
 
-    suspend fun insertCountries(listAppointments: List<Appointment>) {
+    suspend fun insertAppointments(listAppointments: List<Appointment>) {
         return db?.appointmentDao()!!.createAll(listAppointments)
     }
 

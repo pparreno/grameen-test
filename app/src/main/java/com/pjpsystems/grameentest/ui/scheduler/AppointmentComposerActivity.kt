@@ -10,6 +10,7 @@ import com.pjpsystems.grameentest.R
 import com.pjpsystems.grameentest.architecture.helpers.SchedulerHelper
 import com.pjpsystems.grameentest.data.app_model.AppUser
 import com.pjpsystems.grameentest.data.retrofit.Holiday
+import com.pjpsystems.grameentest.data.room.Appointment
 import com.pjpsystems.grameentest.databinding.ActivityAppoinmtmentComposerBinding
 import com.pjpsystems.grameentest.ui.dashboard.InvitationSelectionActivity
 import com.pjpsystems.grameentest.ui.scheduler.viewmodels.AppointmentComposerViewModel
@@ -61,13 +62,26 @@ class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDate
                 SchedulerHelper.selectedDate = viewBinding.dateField.text.toString()
                 SchedulerHelper.startTime = viewBinding.startTimeField.text.toString()
                 SchedulerHelper.endTime = viewBinding.endTimeButton.text.toString()
+
+                val listAppointment = ArrayList<Appointment>()
+                listAppointment.add(SchedulerHelper.buildAppointment())
+                viewModel.submitValidAppointments(listAppointment)
             }
         }
 
 
         user = intent.extras?.getSerializable(InvitationSelectionActivity.KEY_COUNTRY_EXTRA) as AppUser
+        SchedulerHelper.selectedUsers = user
 
         viewModel = ViewModelProvider(this).get(AppointmentComposerViewModel::class.java)
+
+        viewModel.resultLiveData.observe(this, {
+            if(it != null)
+            {
+                finish()
+            }
+        })
+
         user.country_iso.let {
             viewModel.getHolidays("2021", it).observe(this, { holidays ->
                 Timber.d(holidays.toString())
