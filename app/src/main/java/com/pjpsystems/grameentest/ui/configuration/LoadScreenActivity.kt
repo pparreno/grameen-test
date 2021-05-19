@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.pjpsystems.grameentest.databinding.ActivityLoadScreenBinding
-import com.pjpsystems.grameentest.ui.calendar.CalendarActivity
 import com.pjpsystems.grameentest.ui.configuration.viewmodels.LoadScreenViewModel
 import com.pjpsystems.grameentest.ui.dashboard.InvitationSelectionActivity
 

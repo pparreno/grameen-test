@@ -1,6 +1,7 @@
-package com.pjpsystems.grameentest.ui.calendar
+package com.pjpsystems.grameentest.ui.scheduler
 
 import android.annotation.SuppressLint
+import android.app.TimePickerDialog
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
@@ -8,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.pjpsystems.grameentest.R
 import com.pjpsystems.grameentest.data.retrofit.Holiday
-import com.pjpsystems.grameentest.databinding.ActivityCalendarBinding
-import com.pjpsystems.grameentest.ui.calendar.viewmodels.CalendarViewModel
+import com.pjpsystems.grameentest.databinding.ActivityAppoinmtmentComposerBinding
 import com.pjpsystems.grameentest.ui.dashboard.InvitationSelectionActivity
+import com.pjpsystems.grameentest.ui.scheduler.viewmodels.AppointmentComposerViewModel
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import timber.log.Timber
 import java.text.SimpleDateFormat
@@ -19,18 +20,19 @@ import java.util.Calendar.getInstance
 import kotlin.collections.ArrayList
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class CalendarActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
+class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
-    lateinit var viewBinding: ActivityCalendarBinding
+    lateinit var viewBinding: ActivityAppoinmtmentComposerBinding
 
-    lateinit var viewModel: CalendarViewModel
+    lateinit var viewModel: AppointmentComposerViewModel
 
     private lateinit var dpd: DatePickerDialog
+    private lateinit var tpd: TimePickerDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         title = getString(R.string.select_date)
-        viewBinding = ActivityCalendarBinding.inflate(layoutInflater)
+        viewBinding = ActivityAppoinmtmentComposerBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
         viewBinding.selectDateButton.setOnClickListener {
@@ -40,7 +42,7 @@ class CalendarActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
 
         val country_code = intent.extras?.getString(InvitationSelectionActivity.KEY_COUNTRY_EXTRA)
 
-        viewModel = ViewModelProvider(this).get(CalendarViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(AppointmentComposerViewModel::class.java)
         country_code?.let {
             viewModel.getHolidays("2021", it).observe(this, { holidays ->
                 Timber.d(holidays.toString())
@@ -79,14 +81,15 @@ class CalendarActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
         while (!dayIterator.time.after(endTime.time)) {
             val formattedIteratorDate = format.format(dayIterator.time)
             Timber.d("Looping: %s", formattedIteratorDate.toString())
-            if(!listHolidayDates.contains(formattedIteratorDate.toString())){
+            if (!listHolidayDates.contains(formattedIteratorDate.toString())) {
                 listDaysNonHoliday.add(dayIterator.clone() as Calendar)
             } else {
                 Timber.d("Holiday found! %s", formattedIteratorDate.toString())
             }
             dayIterator.add(Calendar.DAY_OF_MONTH, 1)
         }
-        val availableDays: Array<Calendar> = listDaysNonHoliday.toArray(arrayOfNulls<Calendar>(listDaysNonHoliday.size))
+        val availableDays: Array<Calendar> =
+            listDaysNonHoliday.toArray(arrayOfNulls<Calendar>(listDaysNonHoliday.size))
         dpd.selectableDays = availableDays
     }
 
@@ -101,6 +104,8 @@ class CalendarActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
     }
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        TODO("Not yet implemented")
+        val date =
+           "" + dayOfMonth.toString() + "/" + (monthOfYear + 1).toString() + "/" + year
+        viewBinding.dateField.setText(date)
     }
 }

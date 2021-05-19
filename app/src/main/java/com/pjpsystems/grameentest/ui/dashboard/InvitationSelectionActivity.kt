@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pjpsystems.grameentest.databinding.ActivityInvitationSelectionBinding
-import com.pjpsystems.grameentest.ui.calendar.CalendarActivity
+import com.pjpsystems.grameentest.ui.scheduler.AppointmentComposerActivity
 import com.pjpsystems.grameentest.ui.dashboard.adapter.UsersAdapter
 import com.pjpsystems.grameentest.ui.dashboard.viewmodels.InvitationSelectionViewModel
 import timber.log.Timber
@@ -59,7 +59,7 @@ class InvitationSelectionActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun navigateToCalendarActivity(countryCode: String) {
-        val intent = Intent(this, CalendarActivity::class.java)
+        val intent = Intent(this, AppointmentComposerActivity::class.java)
         intent.putExtra(KEY_COUNTRY_EXTRA, countryCode)
         startActivity(intent)
     }
