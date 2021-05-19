@@ -6,6 +6,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pjpsystems.grameentest.data.app_model.AppUser
+import com.pjpsystems.grameentest.data.room.User
 import com.pjpsystems.grameentest.databinding.ActivityInvitationSelectionBinding
 import com.pjpsystems.grameentest.ui.scheduler.AppointmentComposerActivity
 import com.pjpsystems.grameentest.ui.dashboard.adapter.UsersAdapter
@@ -54,13 +56,13 @@ class InvitationSelectionActivity : AppCompatActivity(), View.OnClickListener {
             Timber.d("Selected Index: %d", position)
         }
 
-        navigateToCalendarActivity(adapter.getItem(adapter.selectedIndex).country_iso)
+        navigateToCalendarActivity(adapter.getItem(adapter.selectedIndex).toAppUser())
 
     }
 
-    private fun navigateToCalendarActivity(countryCode: String) {
+    private fun navigateToCalendarActivity(user: AppUser) {
         val intent = Intent(this, AppointmentComposerActivity::class.java)
-        intent.putExtra(KEY_COUNTRY_EXTRA, countryCode)
+        intent.putExtra(KEY_COUNTRY_EXTRA, user)
         startActivity(intent)
     }
 }

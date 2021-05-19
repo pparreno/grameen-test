@@ -1,7 +1,6 @@
 package com.pjpsystems.grameentest.architecture.helpers
 
 import com.pjpsystems.grameentest.data.room.User
-import java.util.*
 
 object SchedulerHelper {
 

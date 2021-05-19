@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.pjpsystems.grameentest.R
 import com.pjpsystems.grameentest.architecture.helpers.SchedulerHelper
+import com.pjpsystems.grameentest.data.app_model.AppUser
 import com.pjpsystems.grameentest.data.retrofit.Holiday
 import com.pjpsystems.grameentest.databinding.ActivityAppoinmtmentComposerBinding
 import com.pjpsystems.grameentest.ui.dashboard.InvitationSelectionActivity
@@ -31,6 +32,8 @@ class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDate
     private lateinit var dpd: DatePickerDialog
     private lateinit var startTPD: TimePickerDialog
     private lateinit var endTPD: TimePickerDialog
+
+    private lateinit var user: AppUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,10 +65,10 @@ class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDate
         }
 
 
-        val country_code = intent.extras?.getString(InvitationSelectionActivity.KEY_COUNTRY_EXTRA)
+        user = intent.extras?.getSerializable(InvitationSelectionActivity.KEY_COUNTRY_EXTRA) as AppUser
 
         viewModel = ViewModelProvider(this).get(AppointmentComposerViewModel::class.java)
-        country_code?.let {
+        user.country_iso.let {
             viewModel.getHolidays("2021", it).observe(this, { holidays ->
                 Timber.d(holidays.toString())
                 configureCalendarView(holidays)
