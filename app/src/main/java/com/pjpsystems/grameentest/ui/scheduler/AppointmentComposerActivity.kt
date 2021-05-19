@@ -1,7 +1,6 @@
 package com.pjpsystems.grameentest.ui.scheduler
 
 import android.annotation.SuppressLint
-import android.app.TimePickerDialog
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
@@ -13,6 +12,7 @@ import com.pjpsystems.grameentest.databinding.ActivityAppoinmtmentComposerBindin
 import com.pjpsystems.grameentest.ui.dashboard.InvitationSelectionActivity
 import com.pjpsystems.grameentest.ui.scheduler.viewmodels.AppointmentComposerViewModel
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,14 +20,16 @@ import java.util.Calendar.getInstance
 import kotlin.collections.ArrayList
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
+class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
+    TimePickerDialog.OnTimeSetListener {
 
     lateinit var viewBinding: ActivityAppoinmtmentComposerBinding
 
     lateinit var viewModel: AppointmentComposerViewModel
 
     private lateinit var dpd: DatePickerDialog
-    private lateinit var tpd: TimePickerDialog
+    private lateinit var startTPD: TimePickerDialog
+    private lateinit var endTPD: TimePickerDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,15 @@ class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDate
             showDatePicker()
         }
         viewBinding.selectDateButton.isEnabled = false
+        viewBinding.startTimeButton.setOnClickListener {
+            startTPD = TimePickerDialog.newInstance(this@AppointmentComposerActivity,false)
+            startTPD.show(supportFragmentManager, "Select Start Time")
+        }
+        viewBinding.endTimeButton.setOnClickListener {
+            endTPD = TimePickerDialog.newInstance(this@AppointmentComposerActivity,false)
+            endTPD.show(supportFragmentManager, "Select End Time")
+        }
+
 
         val country_code = intent.extras?.getString(InvitationSelectionActivity.KEY_COUNTRY_EXTRA)
 
@@ -107,5 +118,28 @@ class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDate
         val date =
            "" + dayOfMonth.toString() + "/" + (monthOfYear + 1).toString() + "/" + year
         viewBinding.dateField.setText(date)
+    }
+
+    override fun onTimeSet(view: TimePickerDialog?, hourOfDay: Int, minute: Int, second: Int) {
+
+        val formattedHour: String = if(hourOfDay < 10) {
+            String.format("0%d", hourOfDay)
+        } else {
+            hourOfDay.toString()
+        }
+
+        val formattedMinutes: String = if(minute < 10) {
+            String.format("0%d", minute)
+        } else {
+            minute.toString()
+        }
+
+        val time =
+            "$formattedHour:$formattedMinutes"
+        if(view == startTPD){
+            viewBinding.startTimeField.setText(time)
+        } else {
+            viewBinding.endTimeField.setText(time)
+        }
     }
 }
