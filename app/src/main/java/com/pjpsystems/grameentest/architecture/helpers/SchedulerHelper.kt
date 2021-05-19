@@ -2,11 +2,15 @@ package com.pjpsystems.grameentest.architecture.helpers
 
 import com.pjpsystems.grameentest.data.room.User
 import java.util.*
-import kotlin.collections.ArrayList
 
 object SchedulerHelper {
 
-    var selectedUsers: ArrayList<User> = ArrayList()
-    lateinit var selectedDate: Date
+    var selectedUsers: User? = null
+    var selectedDate: Date? = null
+    var duration: Int = 0
+    var startTime: String? = null
+    var endTime: String? = null
+    var title: String? = null
+    var desc: String? = null
 
 }
