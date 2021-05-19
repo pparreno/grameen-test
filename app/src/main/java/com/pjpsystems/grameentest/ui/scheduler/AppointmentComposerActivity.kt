@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.pjpsystems.grameentest.R
+import com.pjpsystems.grameentest.architecture.helpers.SchedulerHelper
 import com.pjpsystems.grameentest.data.retrofit.Holiday
 import com.pjpsystems.grameentest.databinding.ActivityAppoinmtmentComposerBinding
 import com.pjpsystems.grameentest.ui.dashboard.InvitationSelectionActivity
@@ -49,6 +50,16 @@ class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDate
             endTPD = TimePickerDialog.newInstance(this@AppointmentComposerActivity,false)
             endTPD.show(supportFragmentManager, "Select End Time")
         }
+        viewBinding.submitButton.setOnClickListener {
+            clearPreviousErrorStates()
+            if(validateFields()){
+                SchedulerHelper.title = viewBinding.titleField.text.toString()
+                SchedulerHelper.desc = viewBinding.descriptionField.text.toString()
+                SchedulerHelper.selectedDate = viewBinding.dateField.text.toString()
+                SchedulerHelper.startTime = viewBinding.startTimeField.text.toString()
+                SchedulerHelper.endTime = viewBinding.endTimeButton.text.toString()
+            }
+        }
 
 
         val country_code = intent.extras?.getString(InvitationSelectionActivity.KEY_COUNTRY_EXTRA)
@@ -61,6 +72,48 @@ class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDate
                 viewBinding.selectDateButton.isEnabled = true
             })
         }
+    }
+
+    private fun clearPreviousErrorStates() {
+        viewBinding.dateField.error = null
+        viewBinding.startTimeField.error = null
+        viewBinding.endTimeField.error = null
+        viewBinding.titleField.error = null
+        viewBinding.descriptionField.error = null
+    }
+
+    private fun validateFields(): Boolean {
+        val isValidDate = viewBinding.dateField.text.toString().isNotEmpty()
+        if(!isValidDate)
+        {
+            viewBinding.dateField.error = "Invalid Value"
+        }
+
+        val isValidStartTime = viewBinding.startTimeField.text.toString().isNotEmpty()
+        if(!isValidStartTime)
+        {
+            viewBinding.startTimeField.error = "Invalid Value"
+        }
+
+        val isValidEndTime = viewBinding.endTimeField.text.toString().isNotEmpty()
+        if(!isValidEndTime)
+        {
+            viewBinding.endTimeField.error = "Invalid Value"
+        }
+
+        val isValidTitle = viewBinding.titleField.text.toString().isNotEmpty()
+        if(!isValidTitle)
+        {
+            viewBinding.titleField.error = "Invalid Value"
+        }
+
+        val isValidDesc = viewBinding.descriptionField.text.toString().isNotEmpty()
+        if(!isValidDesc)
+        {
+            viewBinding.descriptionField.error = "Invalid Value"
+        }
+
+        return isValidDate && isValidStartTime && isValidEndTime &&  isValidTitle && isValidDesc
     }
 
     private fun showDatePicker() {
@@ -118,6 +171,7 @@ class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDate
         val date =
            "" + dayOfMonth.toString() + "/" + (monthOfYear + 1).toString() + "/" + year
         viewBinding.dateField.setText(date)
+        viewBinding.startTimeButton.isEnabled = true
     }
 
     override fun onTimeSet(view: TimePickerDialog?, hourOfDay: Int, minute: Int, second: Int) {
@@ -138,6 +192,7 @@ class AppointmentComposerActivity : AppCompatActivity(), DatePickerDialog.OnDate
             "$formattedHour:$formattedMinutes"
         if(view == startTPD){
             viewBinding.startTimeField.setText(time)
+            viewBinding.endTimeButton.isEnabled = true
         } else {
             viewBinding.endTimeField.setText(time)
         }

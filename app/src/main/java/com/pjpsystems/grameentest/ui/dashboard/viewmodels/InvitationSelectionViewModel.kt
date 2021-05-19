@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class InvitationSelectionViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val userRepository: UserRepository = UserRepository.getInstance(application)!!
+    private val userRepository: UserRepository = UserRepository.getInstance(application)
 
     var oRoomUsers: MutableLiveData<List<User>> = MutableLiveData()
 

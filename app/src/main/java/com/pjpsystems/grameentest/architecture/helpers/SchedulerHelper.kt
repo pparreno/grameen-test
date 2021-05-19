@@ -6,8 +6,7 @@ import java.util.*
 object SchedulerHelper {
 
     var selectedUsers: User? = null
-    var selectedDate: Date? = null
-    var duration: Int = 0
+    var selectedDate: String? = null
     var startTime: String? = null
     var endTime: String? = null
     var title: String? = null
